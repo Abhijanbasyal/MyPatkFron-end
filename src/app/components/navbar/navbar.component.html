@@ -1,11 +1,30 @@
 <nav class="bg-[#2b2d42]">
     <div class="w-screen flex justify-around py-4 text-[#d3d5f3]">
-        <a routerLink="/" ><div>Home</div></a>
-        <a routerLink="/nepali-chalchitra" class=""><div>Nepali</div></a>
-        <a routerLink="/hollywood" class=""><div>English</div></a>
-        <a routerLink="/japanese" class=""><div>Japan</div></a>
-        <a routerLink="/bollywood" class=""><div>Hindi</div></a>
-        <a routerLink="/bollywood" class=""><div>Login</div></a>
-        
+        <a routerLink="/">
+            <div>Home</div>
+        </a>
+        <a routerLink="/nepali-chalchitra" class="">
+            <div>Nepali</div>
+        </a>
+        <a routerLink="/hollywood" class="">
+            <div>English</div>
+        </a>
+        <a routerLink="/japanese" class="">
+            <div>Japan</div>
+        </a>
+        <a routerLink="/bollywood" class="">
+            <div>India</div>
+        </a>
+        <ng-container *ngIf="!isLoggedIn">
+
+            <a routerLink="/login" class="">
+                <div>Login</div>
+            </a>
+        </ng-container>
+        <ng-container *ngIf="isLoggedIn">
+            <button (click)="logout()">LogOut</button>
+
+        </ng-container>
+
     </div>
 </nav>
