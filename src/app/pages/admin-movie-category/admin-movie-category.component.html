@@ -1,0 +1,67 @@
+<div class="container mx-auto p-4">
+    <h2 class="text-2xl font-bold mb-4">Manage Categories</h2>
+  
+    <!-- Success & Error Messages -->
+    <div *ngIf="successMessage" class="bg-green-100 text-green-800 p-2 rounded mb-2">{{ successMessage }}</div>
+    <div *ngIf="errorMessage" class="bg-red-100 text-red-800 p-2 rounded mb-2">{{ errorMessage }}</div>
+  
+    <!-- Add Category -->
+    <div class="mb-4">
+      <input
+        [(ngModel)]="newCategoryName"
+        placeholder="Enter category name"
+        class="border p-2 rounded w-1/2"
+      />
+      <button
+        (click)="addCategory()"
+        class="bg-blue-500 text-white p-2 rounded ml-2"
+      >
+        Add Category
+      </button>
+    </div>
+  
+    <!-- Category List -->
+    <table class="border-collapse border border-gray-300 w-full">
+      <thead>
+        <tr>
+          <th class="border p-2">Name</th>
+          <th class="border p-2">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let category of categories">
+          <td class="border p-2">
+            <span *ngIf="editCategoryId !== category._id">{{ category.name }}</span>
+            <input
+              *ngIf="editCategoryId === category._id"
+              [(ngModel)]="editCategoryName"
+              class="border p-1 rounded w-full"
+            />
+          </td>
+          <td class="border p-2">
+            <button
+              *ngIf="editCategoryId !== category._id"
+              (click)="editCategory(category)"
+              class="bg-yellow-500 text-white p-1 rounded"
+            >
+              Edit
+            </button>
+            <button
+              *ngIf="editCategoryId === category._id"
+              (click)="saveCategory()"
+              class="bg-green-500 text-white p-1 rounded"
+            >
+              Save
+            </button>
+            <button
+              (click)="deleteCategory(category._id)"
+              class="bg-red-500 text-white p-1 rounded ml-2"
+            >
+              Delete
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
