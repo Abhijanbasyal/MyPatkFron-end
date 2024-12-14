@@ -1,1 +1,13 @@
-<p>home works!</p>
+<div>
+    <marquee direction="right" scrollamount="25" class="text-lg font-bold text-[#2b2d42] mb-4">
+        The movies hall with different movies
+    </marquee>
+    <!-- Movies Grid -->
+    <div class=" grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-3 gap-6 px-10">
+        <!-- Render movie cards dynamically -->
+        <ng-container *ngFor="let movie of movies">
+
+            <app-movies-card [movie]="movie" />
+        </ng-container>
+    </div>
+</div>

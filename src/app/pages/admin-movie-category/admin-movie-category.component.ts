@@ -4,11 +4,16 @@ import { CategoryService } from '../../services/category.service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { AdminMovieGenreComponent } from '../../components/admin-movie-genre/admin-movie-genre.component';
+import { AdminMovieCharacterComponent } from '../../components/admin-movie-character/admin-movie-character.component';
+import { AdminMoviesStaffComponent } from '../../components/admin-movies-staff/admin-movies-staff.component';
+import { AdminMoviesComponent } from '../../components/admin-movies/admin-movies.component';
 
 @Component({
   selector: 'app-admin-movie-category',
   standalone: true,
-  imports: [CommonModule, FormsModule, AdminMovieGenreComponent],
+  imports: [CommonModule, FormsModule, AdminMovieGenreComponent, AdminMovieCharacterComponent,
+    AdminMoviesStaffComponent,
+    AdminMoviesComponent],
   templateUrl: './admin-movie-category.component.html',
   styleUrl: './admin-movie-category.component.css'
 })
@@ -20,7 +25,7 @@ export class AdminMovieCategoryComponent implements OnInit {
   errorMessage: string = '';
   successMessage: string = '';
 
-  constructor(private categoryService: CategoryService) {}
+  constructor(private categoryService: CategoryService) { }
 
   ngOnInit(): void {
     this.loadCategories();

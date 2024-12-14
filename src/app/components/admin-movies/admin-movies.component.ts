@@ -60,8 +60,6 @@ export class AdminMoviesComponent implements OnInit {
     this.movieService.getMovies().subscribe((data) => (this.movies = data));
     this.movieService.getCategories().subscribe((data) => (this.categories = data));
     this.movieService.getGenres().subscribe((data) => (this.genres = data));
-    // this.movieService.getCharacters().subscribe((data) => (this.characters = data));
-    // this.movieService.getStaff().subscribe((data) => (this.staff = data));
     this.movieService.getCharacters().subscribe((data) => {
       this.characters = data;
       this.filteredCharacters = data; // Initialize filtered list
