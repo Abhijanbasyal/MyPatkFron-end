@@ -14,6 +14,7 @@ export class NavbarComponent implements OnInit {
 
   authService = inject(AuthService);
   isLoggedIn: boolean = false;
+  showDropdown: boolean = false; 
 
   ngOnInit(): void {
     this.authService.isLoggedIn$.subscribe(res => {
@@ -21,10 +22,16 @@ export class NavbarComponent implements OnInit {
     })
 
   }
+  
+
+  toggleDropdown() {
+    this.showDropdown = !this.showDropdown;
+  }
 
   logout() {
     localStorage.removeItem("user_id");
     this.authService.isLoggedIn$.next(false);
+    this.showDropdown = false;
   }
 
 }

@@ -1,14 +1,14 @@
 
 import { Component, OnInit } from '@angular/core';
 import { CategoryService } from '../../services/category.service';
-import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { AdminMovieGenreComponent } from '../../components/admin-movie-genre/admin-movie-genre.component';
 
 @Component({
   selector: 'app-admin-movie-category',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, AdminMovieGenreComponent],
   templateUrl: './admin-movie-category.component.html',
   styleUrl: './admin-movie-category.component.css'
 })

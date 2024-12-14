@@ -7,7 +7,8 @@ import { apiUrls } from '../middleware/api.urls';
   providedIn: 'root'
 })
 export class GenreService {
-  private baseUrl = apiUrls.moviesGenreApi; 
+  private baseUrl = apiUrls.moviesDetailsApi; 
+  
 
   constructor(private http: HttpClient) {}
 
@@ -16,14 +17,14 @@ export class GenreService {
   }
 
   addGenre(genre: any): Observable<any> {
-    return this.http.post(this.baseUrl, genre);
+    return this.http.post(`${this.baseUrl}/genres`, genre);
   }
 
   updateGenre(id: string, genre: any): Observable<any> {
-    return this.http.put(`${this.baseUrl}/${id}`, genre);
+    return this.http.put(`${this.baseUrl}/genres/${id}`, genre);
   }
 
   deleteGenre(id: string): Observable<any> {
-    return this.http.delete(`${this.baseUrl}/${id}`);
+    return this.http.delete(`${this.baseUrl}/genres/${id}`);
   }
 }

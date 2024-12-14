@@ -1,60 +1,74 @@
 <div class="container mx-auto p-4">
-    <h2 class="text-2xl font-bold mb-4">Manage Genres</h2>
+    <h2 class="text-2xl font-bold mb-4">Manage Staff</h2>
   
     <!-- Success & Error Messages -->
     <div *ngIf="successMessage" class="bg-green-100 text-green-800 p-2 rounded mb-2">{{ successMessage }}</div>
     <div *ngIf="errorMessage" class="bg-red-100 text-red-800 p-2 rounded mb-2">{{ errorMessage }}</div>
   
-    <!-- Add Genre -->
+    <!-- Add Staff -->
     <div class="mb-4">
       <input
-        [(ngModel)]="newGenreName"
-        placeholder="Enter genre name"
-        class="border p-2 rounded w-1/2"
+        [(ngModel)]="newStaff.name"
+        placeholder="Enter staff name"
+        class="border p-2 rounded w-1/4"
+      />
+      <input
+        [(ngModel)]="newStaff.role"
+        placeholder="Enter staff role"
+        class="border p-2 rounded w-1/4 ml-2"
       />
       <button
-        (click)="addGenre()"
+        (click)="addStaff()"
         class="bg-blue-500 text-white p-2 rounded ml-2"
       >
-        Add Genre
+        Add Staff
       </button>
     </div>
   
-    <!-- Genre List -->
+    <!-- Staff List -->
     <table class="border-collapse border border-gray-300 w-full">
       <thead>
         <tr>
           <th class="border p-2">Name</th>
+          <th class="border p-2">Role</th>
           <th class="border p-2">Actions</th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let genre of genres">
+        <tr *ngFor="let staff of staffList">
           <td class="border p-2">
-            <span *ngIf="editGenreId !== genre._id">{{ genre.name }}</span>
+            <span *ngIf="editStaffId !== staff._id">{{ staff.name }}</span>
             <input
-              *ngIf="editGenreId === genre._id"
-              [(ngModel)]="editGenreName"
+              *ngIf="editStaffId === staff._id"
+              [(ngModel)]="editStaff.name"
+              class="border p-1 rounded w-full"
+            />
+          </td>
+          <td class="border p-2">
+            <span *ngIf="editStaffId !== staff._id">{{ staff.role }}</span>
+            <input
+              *ngIf="editStaffId === staff._id"
+              [(ngModel)]="editStaff.role"
               class="border p-1 rounded w-full"
             />
           </td>
           <td class="border p-2">
             <button
-              *ngIf="editGenreId !== genre._id"
-              (click)="editGenre(genre)"
+              *ngIf="editStaffId !== staff._id"
+              (click)="editStaffDetails(staff)"
               class="bg-yellow-500 text-white p-1 rounded"
             >
               Edit
             </button>
             <button
-              *ngIf="editGenreId === genre._id"
-              (click)="saveGenre()"
+              *ngIf="editStaffId === staff._id"
+              (click)="saveStaff()"
               class="bg-green-500 text-white p-1 rounded"
             >
               Save
             </button>
             <button
-              (click)="deleteGenre(genre._id)"
+              (click)="deleteStaff(staff._id)"
               class="bg-red-500 text-white p-1 rounded ml-2"
             >
               Delete

@@ -1,0 +1,159 @@
+<div class="container mx-auto p-4">
+  <h2 class="text-2xl font-bold mb-4">Add New Movie</h2>
+
+  <!-- Success & Error Messages -->
+  <div *ngIf="successMessage" class="bg-green-100 text-green-800 p-2 rounded mb-2">{{ successMessage }}</div>
+  <div *ngIf="errorMessage" class="bg-red-100 text-red-800 p-2 rounded mb-2">{{ errorMessage }}</div>
+
+  <!-- Movie Form -->
+  <div class="mb-4">
+    <input [(ngModel)]="newMovie.title" placeholder="Movie Title" class="border p-2 rounded w-full mb-2" />
+    <textarea [(ngModel)]="newMovie.description" placeholder="Description"
+      class="border p-2 rounded w-full mb-2"></textarea>
+    <input [(ngModel)]="newMovie.releasedOn" placeholder="Release Date" class="border p-2 rounded w-full mb-2"
+      type="date" />
+    <input [(ngModel)]="newMovie.duration" placeholder="Duration (e.g., 2h 30m)"
+      class="border p-2 rounded w-full mb-2" />
+    <select [(ngModel)]="newMovie.parental" class="border p-2 rounded w-full mb-2">
+      <option value="" disabled>Select Parental Rating</option>
+      <option value="18+">18+</option>
+      <option value="PG13">PG13</option>
+      <option value="Kids">Kids</option>
+    </select>
+
+
+    <!-- Social Media -->
+    <div>
+      <h4 class="font-bold">Social Media Links</h4>
+      <input [(ngModel)]="newMovie.socialMedia.twitter" placeholder="Twitter" class="border p-2 rounded w-full mb-2" />
+      <input [(ngModel)]="newMovie.socialMedia.instagram" placeholder="Instagram"
+        class="border p-2 rounded w-full mb-2" />
+      <input [(ngModel)]="newMovie.socialMedia.reddit" placeholder="Reddit" class="border p-2 rounded w-full mb-2" />
+      <input [(ngModel)]="newMovie.socialMedia.youtube" placeholder="YouTube" class="border p-2 rounded w-full mb-2" />
+      <input [(ngModel)]="newMovie.socialMedia.facebook" placeholder="Facebook"
+        class="border p-2 rounded w-full mb-2" />
+    </div>
+
+    <!-- Categories -->
+    <div>
+      <h4 class="font-bold">Select Categories</h4>
+      <div class="flex flex-wrap">
+        <button *ngFor="let category of categories" (click)="toggleSelection(selectedCategories, category._id)"
+          [class.bg-blue-500]="selectedCategories.includes(category._id)" class="border p-2 m-1 rounded cursor-pointer">
+          {{ category.name }}
+        </button>
+      </div>
+    </div>
+
+    <!-- Similar sections for Genres, Characters, Staff -->
+    <div>
+      <h4 class="font-bold">Select Genres</h4>
+      <div class="flex flex-wrap">
+        <button *ngFor="let genre of genres" (click)="toggleSelection(selectedGenres, genre._id)"
+          [class.bg-blue-500]="selectedGenres.includes(genre._id)" class="border p-2 m-1 rounded cursor-pointer">
+          {{ genre.name }}
+        </button>
+      </div>
+    </div>
+
+    <div class="mb-4">
+      <!-- Character Search and Selection -->
+      <h4 class="font-bold">Select Characters</h4>
+      <input [(ngModel)]="characterSearchQuery" placeholder="Search Characters"
+        class="border p-2 rounded w-full mb-2" />
+      <div class="flex flex-wrap">
+        <button *ngFor="let character of filteredCharacters"
+          (click)="toggleSelection(selectedCharacters, character._id)"
+          [class.bg-blue-500]="selectedCharacters.includes(character._id)"
+          class="border p-2 m-1 rounded cursor-pointer">
+          {{ character.name }}
+        </button>
+      </div>
+
+      <!-- Staff Search and Selection -->
+      <h4 class="font-bold">Select Staff</h4>
+      <input [(ngModel)]="staffSearchQuery" placeholder="Search Staff" class="border p-2 rounded w-full mb-2" />
+      <div class="flex flex-wrap">
+        <button *ngFor="let staff of filteredStaff" (click)="toggleSelection(selectedStaff, staff._id)"
+          [class.bg-blue-500]="selectedStaff.includes(staff._id)" class="border p-2 m-1 rounded cursor-pointer">
+          {{ staff.name }}
+        </button>
+      </div>
+    </div>
+
+
+    <!-- File Uploads -->
+    <input type="file" (change)="uploadImage($event)" class="block mb-2" />
+    <input type="file" (change)="uploadVideo($event)" class="block mb-2" />
+
+    <button (click)="addMovie()" class="bg-green-500 text-white p-2 rounded">Add Movie</button>
+
+  </div>
+
+  <!-- Display Movies -->
+  <div *ngFor="let movie of movies" class="border p-4 rounded mb-4">
+    <h3 class="font-bold">{{ movie.title }}</h3>
+    <p>{{ movie.description }}</p>
+    <p>Released On: {{ movie.releasedOn | date }}</p>
+    <p>Duration: {{ movie.duration }}</p>
+    <p>Parental: {{ movie.parental }}</p>
+    <div>
+      <strong>Social Media:</strong>
+      <ul>
+        <li *ngIf="movie.socialMedia.twitter">Twitter: {{ movie.socialMedia.twitter }}</li>
+        <li *ngIf="movie.socialMedia.instagram">Instagram: {{ movie.socialMedia.instagram }}</li>
+        <li *ngIf="movie.socialMedia.reddit">Reddit: {{ movie.socialMedia.reddit }}</li>
+        <li *ngIf="movie.socialMedia.youtube">YouTube: {{ movie.socialMedia.youtube }}</li>
+        <li *ngIf="movie.socialMedia.facebook">Facebook: {{ movie.socialMedia.facebook }}</li>
+      </ul>
+    </div>
+    <div>
+      <strong>Genres:</strong>
+      <ul>
+        <li *ngFor="let genre of movie.genres">{{ genre.name }}</li>
+      </ul>
+    </div>
+
+    <div>
+      <strong>Categories:</strong>
+      <ul>
+        <li *ngFor="let category of movie.categories">{{ category.name }}</li>
+      </ul>
+    </div>
+    <div>
+      <strong>Characters:</strong>
+      <ul>
+        <li *ngFor="let character of movie.characters">{{ character.name }}</li>
+      </ul>
+    </div>
+
+    <div>
+      <strong>Staff:</strong>
+      <ul>
+        <li *ngFor="let staff of movie.staff">{{ staff.name }}</li>
+      </ul>
+    </div>
+
+    <div *ngIf="movie.imagesUrl">
+      <strong>Image:</strong>
+      <img [src]="movie.imagesUrl" alt="Movie Image" class="w-full h-auto mb-2" />
+    </div>
+
+    <div *ngIf="movie.videosUrl">
+      <strong>Video:</strong>
+      <video controls class="w-full">
+        <source [src]="movie.videosUrl" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+    </div>
+
+
+    <!-- Delete Button -->
+    <button (click)="deleteMovie(movie._id)" class="bg-red-500 text-white p-2 rounded">
+      Delete Movie
+    </button>
+
+
+  </div>
+
+</div>

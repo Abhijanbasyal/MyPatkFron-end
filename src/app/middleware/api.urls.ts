@@ -1,5 +1,6 @@
 export const apiUrls = {
     authServiceApi: 'http://localhost:8000/api/auth/',
-    moviesCategoryApi: 'http://localhost:8000/api/moviesdetails',
-    moviesGenreApi: 'http://localhost:8000/api/category'
+    moviesDetailsApi: 'http://localhost:8000/api/moviesdetails',
+    moviesCategoryApi: 'http://localhost:8000/api/category',
+    moviesApi: 'http://localhost:8000/api/movies',
 }
