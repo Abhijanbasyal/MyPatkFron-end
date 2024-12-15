@@ -33,6 +33,11 @@ export class MovieService {
     return this.http.delete(`${this.baseUrl}/movies/${id}`);
   }
 
+  getMovieById(id: string): Observable<any> {
+    return this.http.get(`${this.baseUrl}/movies/${id}`);
+  }
+  
+
   // Fetch data for categories, genres, characters, and staff
   getCategories(): Observable<any> {
     return this.http.get(`${this.moviesCategory}/categories`);
@@ -49,6 +54,8 @@ export class MovieService {
   getStaff(): Observable<any> {
     return this.http.get(`${this.moviesdetailsURL}/staff`);
   }
+
+
 
   // Cloudinary upload
   uploadToImageCloudinary(file: File): Observable<any> {

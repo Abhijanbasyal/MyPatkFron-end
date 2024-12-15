@@ -23,16 +23,16 @@
         </ng-container>
         <ng-container *ngIf="isLoggedIn">
             <div class="relative">
-                <img
-                    src="default-profile.jpg"
-                    alt="Profile"
-                    class="w-8 h-8 rounded-full cursor-pointer"
-                    (click)="toggleDropdown()"
-                />
-                <div *ngIf="showDropdown" class="z-50 absolute right-0 mt-2 bg-white text-black py-2 rounded shadow-lg w-40">
-                    <a routerLink="/movie-catagory" class="block px-4 py-2 hover:bg-gray-200">Panel</a>
+                <img src="default-profile.jpg" alt="Profile" class="w-8 h-8 rounded-full cursor-pointer"
+                    (click)="toggleDropdown()" />
+                <div *ngIf="showDropdown"
+                    class="z-50 absolute right-0 mt-2 bg-white text-black py-2 rounded shadow-lg w-40">
+                    <ng-container *ngIf="isAdminOrStaff()">
+                        <a routerLink="/movie-catagory" class="block px-4 py-2 hover:bg-gray-200">Admin Panel</a>
+                    </ng-container>
                     <!-- <a routerLink="/profile" class="block px-4 py-2 hover:bg-gray-200">Profile</a> -->
-                    <button (click)="logout()" class="block w-full text-left px-4 py-2 hover:bg-gray-200">Logout</button>
+                    <button (click)="logout()"
+                        class="block w-full text-left px-4 py-2 hover:bg-gray-200">Logout</button>
                 </div>
             </div>
         </ng-container>

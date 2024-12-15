@@ -30,15 +30,15 @@
             <div class="flex justify-around">
                 <div>
                     <span class="font-semibold">Genres:</span>
-                    <div class="flex space-x-2" >
+                    <div class="flex space-x-2">
                         <div *ngFor="let genre of movie.genres">{{ genre.name }}</div>
                     </div>
                 </div>
                 <div class="flex bg-blue-400 rounded-2xl p-2">
-                    <button class="">
-
+                    <!-- Navigate to movie details page -->
+                    <a routerLink="/movie/{{ movie._id }}" class="text-white font-semibold">
                         More details
-                    </button>
+                    </a>
                 </div>
             </div>
         </div>

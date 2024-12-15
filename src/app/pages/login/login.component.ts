@@ -27,6 +27,8 @@ export class LoginComponent {
 
     )
   }
+
+
   login() {
     console.log(this.loginForm.value);
     this.authService.loginService(this.loginForm.value)
@@ -35,7 +37,8 @@ export class LoginComponent {
           if (res?.user?.id) {
             alert("Login is Success");
             console.log(res.user.id)
-            localStorage.setItem("user_id", res.user.id);    
+            // localStorage.setItem("user_id", res.user.id);   
+            localStorage.setItem('user_id', JSON.stringify(res.user)); // Saving the user data   
             this.authService.isLoggedIn$.next(true);       
             this.router.navigate(['']);
             this.loginForm.reset();

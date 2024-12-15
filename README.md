@@ -1,3 +1,22 @@
+
+# MyPark Client
+
+This project involves several key features and implementations:
+
+## Features and Work Done
+
+- Work on CRUD operations.
+- Work on protected routes.
+- Work on image and video uploads through Cloudinary.
+- Work on routing (i.e., navigation).
+- Work on setting up Angular.
+- Work on transferring data by passing and getting it by ID to other components.
+- Work on creating components, guards, and services.
+- Work on managing APIs.
+- Work on handling data coming through the API.
+- Work on implementing logic effectively.
+
+
 # Mypark
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.0.4.
@@ -57,3 +76,4 @@ Angular CLI does not come with an end-to-end testing framework by default. You c
 ## Additional Resources
 
 For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+

@@ -7,6 +7,8 @@ import { HindiComponent } from './pages/hindi/hindi.component';
 import { LoginComponent } from './pages/login/login.component';
 import { SignupComponent } from './pages/signup/signup.component';
 import { AdminMovieCategoryComponent } from './pages/admin-movie-category/admin-movie-category.component';
+import { MoviesInfoComponent } from './pages/movies-info/movies-info.component';
+import { AuthGuard } from './guards/auth.guard';
 
 export const routes: Routes = [
     { path: '', component: HomeComponent },
@@ -16,5 +18,7 @@ export const routes: Routes = [
     { path: 'bollywood', component: HindiComponent },
     { path: 'login', component: LoginComponent },
     { path: 'sign-up', component: SignupComponent },
-    { path: 'movie-catagory', component:  AdminMovieCategoryComponent},
+    { path: 'movie-catagory', component:  AdminMovieCategoryComponent, canActivate: [AuthGuard]},
+    { path: 'movie/:id', component: MoviesInfoComponent }, 
+
 ];

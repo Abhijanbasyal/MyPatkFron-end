@@ -21,6 +21,12 @@ export class AuthService {
 
   }
 
+  getUserDetails() {
+    const user = localStorage.getItem('user_id');
+    return user ? JSON.parse(user) : null; // Parse user data from local storage
+  }
+  
+
   isLoggedIn() {
     return !!localStorage.getItem("user_id");
   }

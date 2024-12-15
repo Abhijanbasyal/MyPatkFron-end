@@ -13,9 +13,7 @@ import { AdminMoviesComponent } from './components/admin-movies/admin-movies.com
   imports: [
     RouterOutlet,
     NavbarComponent,
-    AdminMovieCharacterComponent,
-    AdminMoviesStaffComponent,
-    AdminMoviesComponent
+  
     
   ],
   templateUrl: './app.component.html',
